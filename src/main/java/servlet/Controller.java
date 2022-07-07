@@ -60,11 +60,17 @@ public class Controller extends HttpServlet {
 			//response.sendRedirect("/insert.jsp");
 			site = "/insert.jsp";
 		}
+		else if(uriArr[0].equals("/insert_proc")) {
+			System.out.println("insert_proc.jsp로 이동");
+//			RequestDispatcher rd = request.getRequestDispatcher("/insert.jsp");
+//			rd.forward(request, response);
+			site = "/insertServlet";
+		}
 		else if(uriArr[0].equals("/see")) {
 			System.out.println("see.jsp로 이동");
 //			RequestDispatcher rd = request.getRequestDispatcher("/insert.jsp");
 //			rd.forward(request, response);
-			site = "/see.jsp";
+			site = "/seeServlet";
 		}
 		else if(uriArr[0].equals("/best")) {
 			System.out.println("best.jsp로 이동");

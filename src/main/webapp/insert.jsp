@@ -16,7 +16,7 @@
 <br>
 <div class="container">
   <h2>메뉴 입력</h2><br>
-  <form action="/action_page.php">
+  <form action="/insert_proc.menu" method="post">
     <div class="form-group">
       <label for="menu">메뉴 :</label>
       <input type="text" class="form-control" id="menu" placeholder="메뉴를 입력하세요" name="menu">

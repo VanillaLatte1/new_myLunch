@@ -1,3 +1,5 @@
+<%@page import="java.util.List"%>
+<%@page import="dto.Menu"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -13,7 +15,15 @@
 </head>
 <body>
 <%@ include file="header.jsp" %>
-<h2>메뉴 보기</h2> 
+<h2>메뉴 보기</h2>
+<%
+	//리스트에 Menu를 담을 수 있는 리스트에 seeServlet에서 보낸 menuList를 받는다
+	List<Menu> list = (List<Menu>)request.getAttribute("menuList");		//getAttribute는 object 타입을 받기 때문에 리스트를  (List<Menu>)을 사용해 강제 형변환
+	for(Menu m : list){		//list의 값을 하나씩 꺼내서 m에 담는다 / 담은 리스트의 값은 menu의 값 / getMenu로 값을 출력
+		out.println(m.getMenu() + "<br>");
+	}
+	
+%>
 </body>
 </html>
     

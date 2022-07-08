@@ -1,6 +1,3 @@
-<%@page import="dto.Menu"%>
-<%@page import="dao.MenuDaoImpl"%>
-<%@page import="dao.MenuDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -16,19 +13,22 @@
 </head>
 <body>
 <%@ include file="header.jsp" %>
-<h2>오늘은 이거다!</h2>
+<br>
+<div class="container">
+  <h2>Log-in</h2><br>
+  <form action="/login.menu" method="post">
+    <div class="form-group">
+      <label for="userid">ID :</label>
+      <input type="text" class="form-control" id="id" placeholder="ID를 입력하세요" name="userId">
+    </div>
+    <div class="form-group">
+      <label for="userPw">PassWord :</label>
+      <input type="password" class="form-control" id="password" placeholder="비밀번호를 입력하세요" name="userPw">
+    </div>
+    <button type="submit" class="btn btn-primary">login</button>
+  </form>
+</div>
 
-<%
-	MenuDao dao = new MenuDaoImpl();
-	
-	Menu m = dao.randomSelect();
-	String menu = m.getMenu();
-	int price = m.getPrice();
-	String img = m.getImg();
-%>
-<h1>추천 메뉴 : <%=menu%></h1>
-<h1>가격 : <%=price%></h1>
-<img src = "<%=img%>" width = 500 height = 500>
 </body>
 </html>
     

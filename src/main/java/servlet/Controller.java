@@ -33,11 +33,11 @@ public class Controller extends HttpServlet {
 		
 		//브라우저에서 서버에게 요청한 URI
 		String uri = request.getRequestURI();
-		System.out.println(uri);
+//		System.out.println(uri);
 		//브라우저에서 서버에게 요청한 URL
 		//URL은 반환값이 StringBuffer로 되어있어서 같은 타입으로 맞춰줌
-		StringBuffer url = request.getRequestURL();
-		System.out.println(url.toString());
+//		StringBuffer url = request.getRequestURL();
+//		System.out.println(url.toString());
 		
 		//문자열 자르기 (insert.menu에서 .menu를 생략하고 비교하고 싶어서) / 구분자를 . 으로 쓸 때는 \\을 붙여줄 것
 		String [] uriArr = uri.split("\\.");
@@ -77,6 +77,18 @@ public class Controller extends HttpServlet {
 //			RequestDispatcher rd = request.getRequestDispatcher("/insert.jsp");
 //			rd.forward(request, response);
 			site = "/best.jsp";
+		}
+		else if(uriArr[0].equals("/login")) {
+			System.out.println("login.jsp로 이동");
+//			RequestDispatcher rd = request.getRequestDispatcher("/insert.jsp");
+//			rd.forward(request, response);
+			site = "/loginServlet";
+		}
+		else if(uriArr[0].equals("/logout")) {
+			System.out.println("logout.jsp로 이동");
+//			RequestDispatcher rd = request.getRequestDispatcher("/insert.jsp");
+//			rd.forward(request, response);
+			site = "/logout.jsp";
 		}
 		else {
 			site = "/404.jsp";

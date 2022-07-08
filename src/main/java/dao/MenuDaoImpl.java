@@ -114,10 +114,54 @@ public class MenuDaoImpl implements MenuDao{
 		}
 		return list;
 	}
+	
 	@Override
 	public Menu randomSelect() {
-		// TODO Auto-generated method stub
-		return null;
+		Connection conn = null;		//db 연결
+		PreparedStatement pstmt = null;		//쿼리 생성
+		ResultSet rs = null;		//select 이후 나오는 결과값
+		Menu dto = new Menu();
+		
+		String sql = "SELECT * FROM tb_menu ORDER BY RAND() LIMIT 1";
+		try {
+			//드라이버 로딩
+			Class.forName("org.mariadb.jdbc.Driver");
+			//커넥션 객체
+			conn = DriverManager.getConnection(dburl, dbUser, dbpasswd);
+		    
+		    if (conn != null) {
+		        System.out.println("DB 접속 성공");
+		        pstmt = conn.prepareStatement(sql);
+		        rs = pstmt.executeQuery();
+		        
+		        while (rs.next()) {
+		            dto.setMenu(rs.getString("menu"));
+		            dto.setPrice(rs.getInt("price"));
+		            dto.setImg(rs.getString("img"));
+		        }
+		    }
+		} catch (ClassNotFoundException e) {
+		    System.out.println("드라이버 로드 실패");
+		    e.printStackTrace();
+		} catch (Exception e) {
+		    System.out.println("데이터 삽입 실패");
+		    e.printStackTrace();
+		} finally {
+		    try {
+		    	if (rs != null) {
+		            rs.close();
+		        }
+		        if (pstmt != null && !pstmt.isClosed()) {
+		            pstmt.close();
+		        }
+		        if (conn != null && !conn.isClosed()) {
+		            conn.close();
+		        }
+		    } catch (Exception e2) {
+		        e2.printStackTrace();
+		    }
+		}
+		return dto;
 	}
 	@Override
 	public void update(Menu menu) {

@@ -30,5 +30,4 @@ public class Menu {
 	public void setImg(String img) {
 		this.img = img;
 	}
-
 }
